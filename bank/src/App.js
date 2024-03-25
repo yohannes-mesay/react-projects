@@ -131,7 +131,9 @@ export default function App() {
           Pay loan
         </button>
       </p>
-      <p>
+      <p> 10k
+      
+      
         <button
           onClick={() => {
             dispatch({ type: "closeAcount" });

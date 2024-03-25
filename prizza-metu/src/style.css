@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 400;
+  border-bottom: 1.6rem solid #edc84b;
+  padding: 3.2rem;
+}
+
+.container {
+    padding-bottom: 10px;
+width:508px;
+    height: fit-content;
+    border: 5px solid black ;
+
+}
+.intro h1{
+    text-transform: uppercase;
+}
+.intro p{
+    text-align: justify;
+    padding-right: 10px;
+    padding-left: 4px;
+}
+.skilllist{
+    display: flex;
+    justify-content: space-between;
+}
+.skill {
+    display: inline-block; /* Ensures the width is based on content and not full width */
+    border-radius: 6px;
+  }
+ 
+  
+  
