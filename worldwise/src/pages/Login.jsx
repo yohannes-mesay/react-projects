@@ -1,4 +1,3 @@
-import { axios } from "axios";
 import Button from "../components/Button";
 import PageNav from "../components/PageNav";
 import { useAuth } from "../contexts/FakeAuthContext";
