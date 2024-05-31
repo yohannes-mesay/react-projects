@@ -9,6 +9,8 @@ const store =configureStore({
     account: accountReducer,
     customer: customerReducer,
   },
+
+  
 },applyMiddleware(thunk));
 
 
