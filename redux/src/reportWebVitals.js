@@ -7,7 +7,7 @@ const reportWebVitals = onPerfEntry => {
       getLCP(onPerfEntry);
       getTTFB(onPerfEntry);
     });
-  }
+  }//hello
 };
 
 export default reportWebVitals;
