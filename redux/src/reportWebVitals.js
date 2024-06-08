@@ -9,7 +9,7 @@ const reportWebVitals = onPerfEntry => {
       getTTFB(onPerfEntry);
       
     });
-  }// new
+  }// ne
   
   //also new
 
