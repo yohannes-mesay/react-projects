@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function App() {
 //update here
 //also here
+//also here
   const fullName = useSelector((store) => store.customer.fullName);
   return (
     <div>
