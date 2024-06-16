@@ -23,14 +23,12 @@ function Map() {
   } = useGeolocation();
   const { cities } = useCities();
   const [mapLat, mapLng] = useUrlPosition();
-  console.log(mapLng, mapLat);
   useEffect(
     function () {
       if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
     },
     [mapLat, mapLng]
   );
-  console.log("mappos",mapPosition);
   useEffect(
     function () {
       if (geoLocationPosition)
