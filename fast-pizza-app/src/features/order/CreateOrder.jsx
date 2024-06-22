@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -31,14 +32,16 @@ const fakeCart = [
 ];
 
 function CreateOrder() {
+  const errorMsg = useActionData();
   // const [withPriority, setWithPriority] = useState(false);
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   const cart = fakeCart;
-
   return (
-    <div>
+    <Form method="post">
       <h2>Ready to order? Let's go!</h2>
-
-      <form>
+      <div>
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -48,6 +51,7 @@ function CreateOrder() {
           <label>Phone number</label>
           <div>
             <input type="tel" name="phone" required />
+            <h5>{errorMsg?.phone}</h5>
           </div>
         </div>
 
@@ -59,6 +63,7 @@ function CreateOrder() {
         </div>
 
         <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <input
             type="checkbox"
             name="priority"
@@ -70,11 +75,32 @@ function CreateOrder() {
         </div>
 
         <div>
-          <button>Order now</button>
+          <button disabled={isSubmitting}>
+            {isSubmitting ? "submitting" : "Order now"}
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </Form>
   );
+}
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "ok",
+  };
+  const error = {};
+  if (!isValidPhone(data.phone)) {
+    error.phone =
+      "Please write your phone number correctly we might need to contact you";
+  }
+  if (Object.keys(error).length > 0) return error;
+
+  const newOrder = await createOrder(order);
+  console.log(newOrder);
+  return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
