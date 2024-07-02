@@ -1,1 +1,1 @@
-# npm i react-datepicker, data picker package 18-16 
+# npm i react-datepicker, data picker package 18-16
